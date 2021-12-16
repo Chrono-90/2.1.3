@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org/" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>New User</title>
+</head>
+<body>
+<h3>New professional solder</h3>
+<br>
+<form th:method="POST" th:action="@{/create}" th:object="${BRDM}">
+    <input type="hidden" th:field="*{id}"/>
+    <p><label for="name">Enter name: </label> <input type="text" th:field="${BRDM.name}" id="name"/></p>
+    <p><label for="surname">Enter surname: </label> <input type="text" th:field="${BRDM.surname}" id="surname"/></p>
+    <br>
+    <input type="submit" value="OK!">
+</form>
+<br>
+<form th:action="@{/}">
+    <input type="submit" value="Back">
+</form>
+</body>
+</html>

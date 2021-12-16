@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org/" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>All Solders</title>
+</head>
+<body>
+<h3>All solders</h3>
+<br>
+<table border="3" cellpadding="10">
+    <tr>
+        <th>NAME</th>
+        <th>SURNAME</th>
+        <th>OPERATIONS</th>
+    </tr>
+    <tr th:each="solder : ${solders}">
+        <td th:text="${solder.name}">Name</td>
+        <td th:text="${solder.surname}">Surname</td>
+        <td>
+            <a th:href="@{/update/{id}(id=${solder.id})}">
+                <input type="submit" value="Update"/>
+            </a>
+            <a th:href="@{/delete/{id}(id=${solder.id})}">
+                <input type="submit" value="Delete"/>
+            </a>
+        </td>
+    </tr>
+</table>
+<br>
+<form th:method="POST" th:action="@{/getNew}">
+    <input type="submit" value="Create solder">
+</form>
+
+</body>
+</html>
