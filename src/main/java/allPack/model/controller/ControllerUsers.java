@@ -5,9 +5,7 @@ import allPack.model.service.ServiceUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -17,29 +15,29 @@ public class ControllerUsers {
     @Autowired
     private ServiceUser serviceUser;
 
-    @RequestMapping("/")
+    @GetMapping("/")
     public String testContr(Model userModel) {
         List<User> someUsers = serviceUser.getAllUsers();
         userModel.addAttribute("solders", someUsers);
         return "ak103";
     }
-    @RequestMapping("/create")
+    @PostMapping ("/create")
     public String createNewUser(@ModelAttribute("BRDM") User user) {
         serviceUser.createUser(user);
         return "redirect:/";
     }
-    @RequestMapping("/update/{id}")
+    @GetMapping("/update/{id}")
     public String updateUser(@PathVariable("id") int id, Model userModel) {
         User user = serviceUser.fiendUserById(id);
         userModel.addAttribute("BRDM", user);
         return "recrut";
     }
-    @RequestMapping("/delete/{id}")
+    @GetMapping("/delete/{id}")
     public String removeUser(@PathVariable("id") int id) {
         serviceUser.removeUser(id);
         return "redirect:/";
     }
-    @RequestMapping("getNew")
+    @PostMapping("getNew")
     public String getNewUser(Model userModel) {
         User user = new User();
         userModel.addAttribute("BRDM", user);

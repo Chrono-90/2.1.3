@@ -1,42 +1,43 @@
 package allPack.model.service;
 
 
-import allPack.model.daoCrud.Dao;
+import allPack.model.daoCrud.UserDao;
 import allPack.model.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import javax.transaction.Transactional;
+
 import java.util.List;
 
 @Service
 public class ServiceUserImpl implements ServiceUser {
 
     @Autowired
-    private Dao dao;
+    private UserDao userDao;
 
 
     @Override
     @Transactional
     public void createUser(User user) {
-        dao.createUser(user);
+        userDao.createUser(user);
     }
 
     @Override
     @Transactional
     public void removeUser(int id) {
-        dao.removeUser(id);
+        userDao.removeUser(id);
     }
 
     @Override
-    @Transactional
+    @Transactional(readOnly = true)
     public User fiendUserById(int id) {
-        return dao.fiendUserById(id);
+        return userDao.fiendUserById(id);
     }
 
     @Override
-    @Transactional
+    @Transactional(readOnly = true)
     public List<User> getAllUsers() {
-        return dao.getAllUsers();
+        return userDao.getAllUsers();
     }
 }

@@ -4,7 +4,7 @@ import allPack.model.model.User;
 
 import java.util.List;
 
-public interface Dao {
+public interface UserDao {
     void createUser(User user);
     void removeUser(int id);
     User fiendUserById(int id);
